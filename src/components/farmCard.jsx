@@ -24,11 +24,7 @@ import { bnToDec } from '../utils';
 import useAllowance from '../hooks/useAllowance';
 import useApprove from '../hooks/useApprove';
 import { useCallback } from 'react';
-import dogeCoin from "../assets/dogeCoin.svg";
-import kawaCoin from "../assets/kawaCoin.svg";
-import shibaCoin from "../assets/shibaCoin.svg";
-import kishuCoin from "../assets/kishuCoin.svg";
-import akitaCoin from "../assets/akitaCoin.svg";
+
 
 function ContextAwareToggle({ children, eventKey,theme, callback }) {
     const currentEventKey = useContext(AccordionContext);
