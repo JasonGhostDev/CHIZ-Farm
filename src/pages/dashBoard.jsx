@@ -3,26 +3,19 @@ import { Container, Row, Col, Button, Badge, Card, Image, Form, Modal, Nav, Navb
 import { useHistory } from 'react-router';
 import { useWallet } from 'use-wallet';
 import { bnToDec } from '../utils';
-import Logo from "../assets/dogAvtar.png";
-import CardListedbg from "../assets/bg-listed.jpg";
+
 import ListedFormBG from "../assets/bg-listed.jpg";
-import LoginIcon from "../assets/loginIcon.svg";
+
 import Bell from "../assets/bell.svg";
 import tickmarkIcon from "../assets/tickmarkIcon.svg";
 import openIcon from "../assets/openIcon.svg";
 import roundBallIcon from "../assets/roundBallIcon.svg";
 import bellIcon from "../assets/bellIcon.svg";
-import backgroundTexture from "../assets/backgroundTexture.svg";
-import dogeCoin from "../assets/dogeCoin.svg";
-import kawaCoin from "../assets/kawaCoin.svg";
-import shibaCoin from "../assets/shibaCoin.svg";
-import kishuCoin from "../assets/kishuCoin.svg";
-import akitaCoin from "../assets/akitaCoin.svg";
-import logoKawafarm from "../assets/logo-kawafarm.svg";
+
 import { formatAddress } from "../utils";
 
 import FarmCard from "../components/farmCard";
-import Footer from '../components/footer'
+
 import BigNumber from 'bignumber.js'
 const DashBoard = () => {
     const { account, connect, reset, status, balance, connector, ethereum, chainId } = useWallet();
