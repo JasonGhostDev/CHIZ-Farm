@@ -20,44 +20,13 @@ import kishuCoin from "../assets/kishuCoin.svg";
 import akitaCoin from "../assets/akitaCoin.svg";
 import logoKawafarm from "../assets/logo-kawafarm.svg";
 import { formatAddress } from "../utils";
-import CoinCard from "../components/coinCard";
+
 import FarmCard from "../components/farmCard";
 import Footer from '../components/footer'
 import BigNumber from 'bignumber.js'
 const DashBoard = () => {
     const { account, connect, reset, status, balance, connector, ethereum, chainId } = useWallet();
-    const dummyData = [
-        {
-            coinTitle: 'Kawakami Inu Pool',
-            stake: "KAWA",
-            type: 'approveContract',
-            image:kawaCoin,
-        },
-        {
-            coinTitle: 'Shiba Inu Pool',
-            stake: "SHIB",
-            type: 'approveContract',
-            image:shibaCoin,
-        },
-        {
-            coinTitle: 'Dogeion Pool',
-            stake: "ELON",
-            type: 'approveContract',
-            image:dogeCoin,
-        },
-        {
-            coinTitle: 'Kishu Inu Pool',
-            stake: "KISHU",
-            type: 'approveContract',
-            image:kishuCoin,
-        },
-        {
-            coinTitle: 'Akita Inu Pool',
-            stake: "AKITA",
-            type: 'approveContract',
-            image:akitaCoin,
-        }
-    ]
+   
     const history = useHistory();
     const [showBox, setshowBox] = useState("none");
 
@@ -104,7 +73,7 @@ const DashBoard = () => {
     }
     return (
         
-        <Container fluid className="main_layout" style={{ backgroundColor: '#FFF6F5', marginInline: '0px' }}>
+        <Container fluid className="main_layout" style={{ backgroundColor: '#000000', marginInline: '0px' }}>
           
             <Container>
   
@@ -117,12 +86,12 @@ const DashBoard = () => {
                     }}
                 >
                     <Navbar.Brand>
-                        <Image
+                        {/*<Image
                             src={Logo}
                             roundedCircle
                             style={{ maxWidth: "36px", maxHeight: "36px", marginRight: '12px' }}
                         />
-                        <img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />
+                        /*<img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />*/}
                     </Navbar.Brand>
                     
                     <Navbar.Collapse id="basic-navbar-nav" style={{ marginRight: "24px" }}>
@@ -195,13 +164,13 @@ const DashBoard = () => {
             <Container className="main-dash-container" style={{maxWidth:'1140px' }}>
                 <Row>
                     <Col xl="12" className="p-2" style={{paddingTop: 0}}>
-                        <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby' }}>Stake one or more tokens to earn xKAWA</div>
+                        <div className="font-weight-bold farm-top-title" style={{ fontFamily: 'Visby', color:'#fff' }}>Stake one or more lp tokens to earn CHIZ</div>
                         <hr />
                     </Col>
                 </Row>
                 <Row className="pb-2">
-                    <Col>
-                    Showing <span style={{ 'font-size': '18px' }}>5 staking pools</span>
+                    <Col style={{'color':'#ffffff' }}>
+                    Showing <span style={{ 'font-size': '18px', 'color':'#ffffff' }}>3 staking pools</span>
                     </Col>
                 </Row>
                 <Row className="">
@@ -214,29 +183,7 @@ const DashBoard = () => {
                     account={account}
               />}
               
-                    <div md="10" lg="6" xl="4" className= "mt-2 ml-0 card-listed">
-                        <Card className="stake_card" style={{backgroundSize: 'cover', backgroundImage: "url(" + CardListedbg + ")"}}>
-                            <Card.Body style={{
-                                display: 'flex',
-                                textalign: 'center',
-                                alignItems: 'center'
-                            }}>
-                                <div className="mx-auto p-3" style={{ textAlign: "center" }}>
-                                    <Row><Col><img src={LoginIcon} alt=""/></Col></Row>
-                                    <Row><Col><h2 className="my-4">Want to see your dog token listed?</h2></Col></Row>
-                                    <Row>
-                                        <Col>
-                                            <div >
-                                                <Button className="getInTouchButton" variant="outline-success" size="md" onClick={handleShow}>
-                                                    GET IN TOUCH
-                                                </Button>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
+                   
                 </Row>
                 <Modal show={show} onHide={handleClose} animation={false} style={{ borderRadius: '24px' }}>
                     <Modal.Body className="p-0 form-listtoken">
@@ -312,10 +259,6 @@ const DashBoard = () => {
                 </Modal>
             </Container>
         
-            
-                   <Footer/>
-
-            
         </Container>
     );
 };

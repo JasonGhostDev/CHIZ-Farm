@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import { useHistory } from 'react-router-dom'
-import ExcMark from "../assets/exclamation.svg";
+
 import dogAvtar from "../assets/dogAvtar.png";
 import HomepageBG from "../assets/bg-homepage.jpg";
-import ExcMarkWhite from "../assets/exclamation-white.svg";
+
 import Metamask from "../assets/metamask.svg";
-import MetamaskDark from "../assets/metamask-dark.svg";
+
 import WConnect from "../assets/wallet-connect.svg";
-import WConnectDark from "../assets/wallet-Connect-dark.svg";
+
 import logoKawafarm from "../assets/logo-kawafarm.svg";
 import { useWallet } from 'use-wallet';
 import Footer from '../components/footer'
@@ -65,17 +65,17 @@ const SignIn = props => {
                 <Col lg={{ span: 4, offset: 4 }}  className="d-flex flex-column justify-content-center" style={{maxWidth:'480px', marginLeft: 'auto', marginRight:'auto', width:'100%', padding:'60px 0' }}>
                     <Row>
                         <Col sm={{span:0}} className="logo-image-container">
-                            <Image src={dogAvtar} roundedCircle style={{ marginLeft:'auto', marginRight:'auto', display:'block' }} />
+                            {/*<Image src={dogAvtar} roundedCircle style={{ marginLeft:'auto', marginRight:'auto', display:'block' }} />*/}
                         </Col>
                     </Row>
                     <Row>
                         <Col lg={12}>
-                            <img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />
+                           {/* <img alt="KawaFarm" src={logoKawafarm} className="svg-kawa" />*/}
                         </Col>
                     </Row>
                     <Row>
                         <Col lg={12} className="text-center intro-text">
-                            <span className="text-center">Farm <strong style={{ color: "#FF2E59", fontFamily:"Visby 800" }}>$xKAWA</strong> by staking the most popular community tokens such as SHIB, KISHU, AKITA and more!</span>
+                            <span className="text-center">Farm <strong style={{ color: "#FF2E59", fontFamily:"Visby 800" }}>CHIZ</strong> by staking the lp tokens!</span>
                         </Col>
                     </Row>
                     <Row>
@@ -125,7 +125,7 @@ const SignIn = props => {
             </Row>
  
                    
-              <Footer/>
+              
         </Container>
 
     );

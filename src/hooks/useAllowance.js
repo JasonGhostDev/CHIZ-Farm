@@ -20,6 +20,7 @@ const useAllowance = (lpContract, farmContract=null) => {
       farmContract,
       account,
     );
+    console.log("allowance = ", allowance);
     setAllowance(new BigNumber(allowance));
   }, [account, farmContract, lpContract]);
 

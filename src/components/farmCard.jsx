@@ -207,14 +207,15 @@ const CoinCard = (props) => {
                 pid,
                 account
             );
-            const decimals = await props.pool.tokenContract.methods.decimals().call();
             console.log("earned = ", bnToDec(new BigNumber(earned)).toFixed(4));
+            const decimals = await props.pool.tokenContract.methods.decimals().call();
+           
             setEarned(bnToDec(new BigNumber(earned), decimals).toFixed(4));
-           const poolWeight = await getPoolWeight(
-                farmContract,
-                pid
-            );
-            setPoolWeight( 100);
+         //  const poolWeight = await getPoolWeight(
+         //       farmContract,
+        //        pid
+        //    );
+        //    setPoolWeight( 100);
             const staked = await getStaked(
                 farmContract,
                 pid,
@@ -225,10 +226,11 @@ const CoinCard = (props) => {
             const totalLpValue = await props.pool.lpContract.methods
                 .balanceOf(farmContract.options.address)
                 .call();
+        
             setTotalLpValue(bnToDec(new BigNumber(totalLpValue)).toFixed(2));
         }
         if (payr && account) {
-            fetchEarned();
+           // fetchEarned();
         }
         let refreshInterval = setInterval(fetchEarned, 10000)
         return () => clearInterval(refreshInterval)
@@ -324,12 +326,12 @@ const CoinCard = (props) => {
     return (
     <Card style={{ width: '22rem' }} className="stake_card p-0 m-0 mr-2 mt-2">
             {headerMessage && <Card.Header style={{ height: '24px', padding: 0, margin: 0, textAlign: "center" }}><small style={{ marginInline: 'auto', color: "#136F1C" }}>{headerMessage}</small></Card.Header>}
-            <Card.Header style={{ backgroundColor: "#FFF", borderTopRightRadius: '25px', borderTopLeftRadius: '25px' }}>
+            <Card.Header style={{  borderTopRightRadius: '25px', borderTopLeftRadius: '25px' }}>
                 <div className="d-flex justify-content-start p-3">
                     <div><Image src={cardData.icon} roundedCircle style={{ maxWidth: '50px', maxHeight: '50px' }} /></div>
                     <div style={{marginLeft:'12px'}}>
-                        <h5 className="m-0">{cardData.poolTitle}</h5>
-                        <small>{cardData.name}-xKAWA</small>
+                        <h5 className="m-0 text-light">{cardData.poolTitle}</h5>
+                        <small>{cardData.name}-CHIZ</small>
                     </div>
                 </div>
                 <div className="d-flex justify-content-between p-3 token-info">
@@ -343,7 +345,7 @@ const CoinCard = (props) => {
                     </div>
                     <div>
                         <h6 className='mb-0' style={{ color: '#977D83' }}>Earn</h6>
-                        <strong><Badge pill variant="light" className="tagKawa">XKawa</Badge></strong>
+                        <strong><Badge pill variant="light" className="tagKawa">CHIZ</Badge></strong>
                     </div>
                 </div>
 
@@ -371,7 +373,7 @@ const CoinCard = (props) => {
                         <Col lg={12}>
                             <div className="d-flex justify-content-between p-0 align-items-end">
                                 <div>
-                                    <small className="card_stake_text"><strong style={{ paddingLeft: 12 }}>xKAWA EARNED</strong></small>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 12 }}>CHIZ EARNED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
                                 </div>
                                 <div className="pt-2">
@@ -405,7 +407,7 @@ const CoinCard = (props) => {
                                     Approving...</strong>
                                 </Button>
                             ): (
-                                <Button variant="light" style={{ border: '1px solid #E6E5E5', fontSize:'13px', color:'#000000', textTransform:'uppercase', backgroundColor:'transparent' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
+                                <Button variant="light" style={{ border: '1px solid #E6E5E5', fontSize:'13px', color:'#fff', textTransform:'uppercase', backgroundColor:'transparent' }} onClick={handleApprove} block><strong>Approve Contract</strong></Button>
                             )}
                             </>
                         ) : (    
@@ -535,7 +537,7 @@ const CoinCard = (props) => {
                         <Col lg={12}>
                             <div className="d-flex justify-content-between p-0 align-items-end">
                                 <div>
-                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>xKAWA EARNED</strong></small>
+                                    <small className="card_stake_text"><strong style={{ paddingLeft: 16 }}>CHIZ EARNED</strong></small>
                                     <Form.Control size="lg" style={{ border: "none" }} type="text" value={earned} disabled />
                                 </div>
                                 <div className="pt-2">
@@ -661,7 +663,7 @@ const CoinCard = (props) => {
                     <Col lg={12} className="">
                         <div className="d-flex justify-content-between p-0">
                             <div className="mr-1">
-                                <Form.Control size="lg" style={{ border: "none" }} type="text" value={stakedBalance} disabled  onChange={(val) => setWithdrawAmount(val.target.value)}/>
+                                <Form.Control size="lg" style={{ border: "none" }} type="number" value={withdrawAmount}   onChange={(val) => setWithdrawAmount(val.target.value)}/>
                                 <div className="text-right h_title">Available: {stakedBalance ? stakedBalance : "0.00"}</div>
                             </div>
                             <div className="py-2">
@@ -687,6 +689,7 @@ const CoinCard = (props) => {
                                 const txHash = await unstake(
                                     cardData.farmContract,
                                     cardData.pid,
+                                    withdrawAmount,
                                     account,
                                 );
                                 setPendingWithdraw(false);
@@ -735,7 +738,7 @@ const CoinCard = (props) => {
                                             <InputGroup.Prepend >
                                                 <InputGroup.Text style={{ background: "#fff", border: 'none' }}>
                                                     <small><strong className="card_stake_text pt-2">
-                                                        xKAWA
+                                                        CHIZ
                                                     </strong></small>
                                                 </InputGroup.Text>
                                             </InputGroup.Prepend>

@@ -74,9 +74,7 @@ export const getPoolWeight = async (farmContract, pid) => {
 }
 
 export const getEarned = async (farmContract, pid, account) => {
-  const earned = await farmContract.methods.userClaimable(account).call();
-  console.log("asdfasdf = ", earned);
-  return earned;
+    return farmContract.methods.pendingChiz(pid, account).call();
 }
 
 
@@ -93,7 +91,8 @@ export const getTotalLPWethValue = async (
     .call();
    
   const tokenDecimals = await tokenContract.methods.decimals().call();
-  // Get the share of lpContract that farmContract owns
+  console.log("tokenDecimals", tokenDecimals);
+    // Get the share of lpContract that farmContract owns
   const balance = await lpContract.methods
     .balanceOf(farmContract.options.address)
     .call();
@@ -137,8 +136,10 @@ export const getFarmSupply = async (payr) => {
 }
 
 export const stake = async (farmContract, pid, amount, account) => {
+  console.log("pid = ", pid);
   return farmContract.methods
-    .stakeTokens(
+    .deposit(
+      pid,
       new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
     )
     .send({ from: account })
@@ -148,9 +149,14 @@ export const stake = async (farmContract, pid, amount, account) => {
     });
 }
 
-export const unstake = async (farmContract, pid,  account) => {
+export const unstake = async (farmContract, pid, amount, account) => {
+  console.log("withpid = ", pid);
+  console.log("amount = ", amount);
+  console.log("account = ", account);
   return farmContract.methods
-    .withdrawTokens(
+    .withdraw(
+      pid, 
+      new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(),
     )
     .send({ from: account })
     .on('transactionHash', (tx) => {
@@ -159,8 +165,9 @@ export const unstake = async (farmContract, pid,  account) => {
     });
 }
 export const harvest = async (farmContract, pid, account) => {
+  console.log("harvesting.....");
   return farmContract.methods
-    .withdrawReward()
+    .deposit(pid, '0')
     .send({ from: account })
     .on('transactionHash', (tx) => {
       console.log(tx)
@@ -170,8 +177,8 @@ export const harvest = async (farmContract, pid, account) => {
 
 export const getStaked = async (farmContract, pid, account) => {
   try {
-    const  amount  = await farmContract.methods
-      .userStaked(account)
+    const { amount } = await farmContract.methods
+      .userInfo(pid, account)
       .call();
     return new BigNumber(amount);
   } catch {
